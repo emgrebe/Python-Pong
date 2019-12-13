@@ -39,6 +39,10 @@ ball.shape("circle")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
+  # d means delta or change
+  # ball moves by 2px
+ball.dx = 2
+ball.dy = -2
 
 # FUNCTIONS
 def paddle_a_up():
@@ -84,3 +88,26 @@ wn.onkeypress(paddle_b_down, "Down")
 while True:
   # Everytime loop runs it updates window
   wn.update()
+
+  # MOVE THE BALL
+  ball.setx(ball.xcor() + ball.dx)
+  ball.sety(ball.ycor() + ball.dy)
+
+  # BORDER CHECKING
+  if ball.ycor() > 290:
+    ball.sety(290)
+    # reverse direction of the ball
+    ball.dy *= -1
+
+  if ball.ycor() < -290:
+    ball.sety(-290)
+    ball.dy *= -1
+
+  if ball.xcor() > 390:
+    # back to the center
+    ball.goto(0, 0)
+    ball.dx *= -1
+
+  if ball.xcor() < -390:
+    ball.goto(0, 0)
+    ball.dx *= -1
