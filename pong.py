@@ -40,7 +40,47 @@ ball.color("white")
 ball.penup()
 ball.goto(0, 0)
 
-# Main game loop
+# FUNCTIONS
+def paddle_a_up():
+  # returns y coordinate
+  y = paddle_a.ycor()
+  # moves paddle up 20px
+  y += 20
+  # resets the y coordinate
+  paddle_a.sety(y)
+
+def paddle_a_down():
+  # returns y coordinate
+  y = paddle_a.ycor()
+  # moves paddle down 20px
+  y -= 20
+  # resets the y coordinate
+  paddle_a.sety(y)
+
+def paddle_b_up():
+  y = paddle_b.ycor()
+  y += 20
+  paddle_b.sety(y)
+
+def paddle_b_down():
+  y = paddle_b.ycor()
+  y -= 20
+  paddle_b.sety(y)
+
+# KEYBOARD BINDING
+  # listen for keyboard input
+wn.listen()
+  # calls function when 'w' is pressed
+wn.onkeypress(paddle_a_up, "w")
+  # calls function when 's' is pressed
+wn.onkeypress(paddle_a_down, "s")
+  # calls function when the up arrow is pressed
+wn.onkeypress(paddle_b_up, "Up")
+  # calls function when down arrow is pressed
+wn.onkeypress(paddle_b_down, "Down")
+
+
+# MAIN GAME LOOP
 while True:
   # Everytime loop runs it updates window
   wn.update()
