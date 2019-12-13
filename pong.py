@@ -11,6 +11,12 @@ wn.setup(width=800, height=600)
   # Speeds up game
 wn.tracer(0)
 
+
+# SCORE 
+score_a = 0
+score_b = 0
+
+
 # PADDLE A - LEFT
 paddle_a = turtle.Turtle()
   # Speed of animation-to the max possible speed
@@ -32,6 +38,7 @@ paddle_b.shapesize(stretch_wid=5, stretch_len=1)
 paddle_b.penup()
 paddle_b.goto(350, 0)
 
+
 # BALL
 ball = turtle.Turtle()
 ball.speed(0)
@@ -43,6 +50,17 @@ ball.goto(0, 0)
   # ball moves by 2px
 ball.dx = 2
 ball.dy = -2
+
+
+# PEN
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 260)
+pen.write("Player A: 0  Player B: 0", align="center", font=("Courier", 24, "normal"))
+
 
 # FUNCTIONS
 def paddle_a_up():
@@ -107,10 +125,17 @@ while True:
     # back to the center
     ball.goto(0, 0)
     ball.dx *= -1
+    score_a += 1
+    pen.clear()
+    pen.write(f"Player A: {score_a}  Player B: {score_b}", align="center", font=("Courier", 24, "normal"))
 
   if ball.xcor() < -390:
     ball.goto(0, 0)
     ball.dx *= -1
+    score_b += 1
+    pen.clear()
+    pen.write(f"Player A: {score_a}  Player B: {score_b}", align="center", font=("Courier", 24, "normal"))
+
 
   # PADDLE AND BALL COLLISIONS
   if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() - 50):
